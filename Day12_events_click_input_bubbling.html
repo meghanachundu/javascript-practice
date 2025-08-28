@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Day 12 - Events Demo</title>
+  <style>
+    #parent {
+      background: lightblue;
+      padding: 20px;
+    }
+
+    #child {
+      background: lightcoral;
+      padding: 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Events Demo</h2>
+
+  <!-- Click Event -->
+  <button id="btnClick">Click Me</button>
+
+  <br><br>
+
+  <!-- Input Event -->
+  <input type="text" id="nameInput" placeholder="Type your name" />
+  <p id="displayName"></p>
+
+  <!-- Event Bubbling -->
+  <div id="parent">
+    Parent Div
+    <div id="child">Child Div</div>
+  </div>
+
+  <script>
+
+    // 1. Click Event
+    document.getElementById("btnClick").addEventListener("click", () => {
+      alert("Button was clicked!");
+    });
+
+    // 2. Input Event (runs whenever user types)
+    document.getElementById("nameInput").addEventListener("input", (event) => {
+      document.getElementById("displayName").textContent =
+        "You typed: " + event.target.value;
+    });
+
+    // 3. Event Bubbling
+    // Bubbling means events go from child → parent → up
+    document.getElementById("parent").addEventListener("click", () => {
+      console.log("Parent Div Clicked");
+    });
+
+    document.getElementById("child").addEventListener("click", () => {
+      console.log("Child Div Clicked");
+      // event.stopPropagation(); // uncomment to stop bubbling
+    });
+
+  </script>
+</body>
+
+</html>
